@@ -21,7 +21,7 @@ Open a terminal in the main directory and run this to get the back-end running.
 npm run
 ```
 
-Then, a second terminal concurrently to start running the front-end as well.
+Then, on a second terminal concurrently run this for the front-end.
 
 ```
 cd client
