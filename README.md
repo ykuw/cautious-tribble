@@ -1,4 +1,4 @@
-# l
+# What's this?
 A simple fullstack starter application using [Node.js](https://github.com/nodejs/node), [Express.js](https://github.com/expressjs/express), [React.js](https://github.com/facebook/react) and [MongoDB](https://github.com/mongodb/mongo).
 
 # Installation
