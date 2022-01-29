@@ -10,9 +10,9 @@ npm install
 
 In the main directory create an `.env` file and add the following variables:
 
-- `MONGODB_URI` to contain the [MongoDB URI](https://docs.mongodb.com/manual/reference/connection-string/).
+- `MONGODB_URI` for the [MongoDB URI](https://docs.mongodb.com/manual/reference/connection-string/).
 
-- `JWT_KEY` to contain the [JWT](https://github.com/auth0/node-jsonwebtoken) key. A random string.
+- `JWT_KEY` for the [JWT](https://github.com/auth0/node-jsonwebtoken) key. A random string.
 
 # Run
 Open a terminal in the main directory and run this to get the back-end running.
@@ -21,7 +21,7 @@ Open a terminal in the main directory and run this to get the back-end running.
 npm run
 ```
 
-Then, a second terminal concurrently to start running the front-end as well
+Then, a second terminal concurrently to start running the front-end as well.
 
 ```
 cd client
