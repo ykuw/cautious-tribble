@@ -19,7 +19,7 @@ module.exports = (app) => {
         return res.status(200).send(accounts);
     });
 
-    app.post("/api/signup", (req, res) => {
+    app.post("/api/signup", checkAuth, (req, res) => {
         Users.find({email: {$eq: req.body.email}})
             .exec()
             .then((user) => {
