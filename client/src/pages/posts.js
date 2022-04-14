@@ -17,7 +17,7 @@ class Logs extends React.Component {
             data: [], // API data. The posts.
             currentPage: 0, // Current page.
             totalLogs: 0, // Total posts.
-            limit: 10, // Posts per page limit.
+            limit: 5, // Posts per page limit.
             alert: false // Alert to show if text is invalid.
         };
     }
