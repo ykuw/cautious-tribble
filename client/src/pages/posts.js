@@ -41,6 +41,31 @@ class Logs extends React.Component {
             });
     };
 
+    // Paginating the results. Getting posts.
+    getPosts = (currentPage) => {
+        this.dataRequest("/api/posts/?page=" + currentPage + "&limit=" + this.state.limit, "GET")
+            .then((data) => {
+                this.setState({
+                    data: data.posts,
+                });
+            })
+            .catch((err) => {
+                console.log("Error fetching posts, mate. ", err);
+            });
+    };
+
+    // Get total number of posts.
+    componentDidMount() {
+        this.dataRequest("/api/posts/?page=1", "GET").then((data) => {
+            this.setState(
+                {
+                    totalLogs: data.total,
+                },
+                () => this.getPosts(this.state.currentPage)
+            );
+        });
+    }
+
     render() {
         return (
             <>
