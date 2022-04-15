@@ -54,18 +54,12 @@ class Logs extends React.Component {
             });
     };
 
-    // Get total number of posts.
+    // Get posts on page load.
     componentDidMount() {
-        this.dataRequest("/api/posts/?page=1", "GET").then((data) => {
-            this.setState(
-                {
-                    totalLogs: data.total,
-                },
-                () => this.getPosts(this.state.currentPage)
-            );
-        });
+        this.getPosts();
     }
 
+    // Render the posts.
     render() {
         return (
             <>
@@ -132,6 +126,7 @@ class Logs extends React.Component {
         this.setState({log: event.target.value});
     }
 
+    // Post the text to the database.
     handleSubmit(e) {
         e.preventDefault();
 
@@ -153,6 +148,7 @@ class Logs extends React.Component {
     }
 }
 
+// Function to format the date.
 function formatDate(string) {
     // Format date into DD Mon YYYY, HH:MM:SS.
     const options = {
