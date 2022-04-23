@@ -12,10 +12,8 @@ require("dotenv").config();
 
 require('./models/yt');
 require('./models/posts');
-require('./models/efficiency');
 require('./models/quotes');
 require('./models/users');
-require('./models/bookmarks');
 
 // Initiate MongoDB connection.
 
@@ -27,10 +25,8 @@ app.use(bodyParser.json());
 
 require('./routes/yt')(app);
 require('./routes/posts')(app);
-require('./routes/efficiency')(app);
 require('./routes/quotes')(app);
 require('./routes/users')(app);
-require('./routes/bookmarks')(app);
 
 // Choose port & start the server.
 

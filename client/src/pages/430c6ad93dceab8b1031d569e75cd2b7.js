@@ -4,11 +4,38 @@ import {Helmet} from "react-helmet";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
+import {Pagination} from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 import Bottom from "../sections/bottom";
 import Clickable from "../sections/clickable";
 
 const processString = require("react-process-string"); // Used for processing the string.
+
+// Building the pagination.
+const BasicPagination = (props) => {
+    const pages = [];
+
+    let start = props.currentPage - (props.currentPage % 10);
+    for (let number = start; number <= start + 11 && number <= props.pages; number++) {
+        pages.push(
+            <Pagination.Item key={number} onClick={() => props.nextPage(number)}>
+                {number + 1}
+            </Pagination.Item>
+        );
+    }
+
+    return (
+        <Pagination size="sm" className="customPagination">
+            {props.currentPage > 10 && (
+                <Pagination.Prev onClick={() => props.tenChange(props.currentPage, -1)}>Less pages</Pagination.Prev>
+            )}
+            {pages}
+            {props.currentPage + 10 < props.pages && (
+                <Pagination.Next onClick={() => props.tenChange(props.currentPage, 1)}>More pages</Pagination.Next>
+            )}
+        </Pagination>
+    );
+};
 
 class Logs extends React.Component {
     constructor(props) {
@@ -17,10 +44,43 @@ class Logs extends React.Component {
             data: [], // API data. The posts.
             currentPage: 0, // Current page.
             totalLogs: 0, // Total posts.
-            limit: 5, // Posts per page limit.
+            limit: 20, // Posts per page limit.
             alert: false // Alert to show if text is invalid.
         };
     }
+
+    // Next pages to be shown within pagination menu.
+    nextPage = (pageNumber) => {
+        this.setState({
+            currentPage: pageNumber,
+            data: [],
+        });
+        this.getPosts(pageNumber);
+    };
+
+    // If more than 10 pages, show the 10 buttons in the pagination menu.
+    tenChange = (pageNumber, isPosOrNeg) => {
+        let finalPage;
+        if (isPosOrNeg > 0) finalPage = pageNumber + 10;
+        else finalPage = pageNumber - 10;
+        this.setState({
+            currentPage: finalPage,
+            data: [],
+        });
+        this.getPosts(finalPage);
+    };
+
+    // If more than 100 pages, show the 100 buttons in the pagination menu.
+    hundredChange = (pageNumber, isPosOrNeg) => {
+        let finalPage;
+        if (isPosOrNeg > 0) finalPage = pageNumber + 100;
+        else finalPage = pageNumber - 100;
+        this.setState({
+            currentPage: finalPage,
+            data: [],
+        });
+        this.getPosts(finalPage);
+    };
 
     // Function for the API requests, headers and what needs to be included.
     dataRequest = (URL, methodType, params) => {
@@ -54,12 +114,18 @@ class Logs extends React.Component {
             });
     };
 
-    // Get posts on page load.
+    // Get total number of posts.
     componentDidMount() {
-        this.getPosts();
+        this.dataRequest("/api/posts/?page=1", "GET").then((data) => {
+            this.setState(
+                {
+                    totalLogs: data.total,
+                },
+                () => this.getPosts(this.state.currentPage)
+            );
+        });
     }
 
-    // Render the posts.
     render() {
         return (
             <>
@@ -112,6 +178,17 @@ class Logs extends React.Component {
                             );
                         })}
 
+                        {/* Pagination. */}
+                        {this.state.totalLogs > this.state.limit && (
+                            <BasicPagination
+                                pages={this.state.totalLogs / this.state.limit}
+                                nextPage={this.nextPage}
+                                currentPage={this.state.currentPage}
+                                tenChange={this.tenChange}
+                                hundreadChange={this.hundredChange}
+                            />
+                        )}
+
                     </Container>
                 </div>
 
@@ -126,7 +203,6 @@ class Logs extends React.Component {
         this.setState({log: event.target.value});
     }
 
-    // Post the text to the database.
     handleSubmit(e) {
         e.preventDefault();
 
@@ -148,7 +224,6 @@ class Logs extends React.Component {
     }
 }
 
-// Function to format the date.
 function formatDate(string) {
     // Format date into DD Mon YYYY, HH:MM:SS.
     const options = {
