@@ -14,7 +14,6 @@ require('./models/yt');
 require('./models/posts');
 require('./models/quotes');
 require('./models/users');
-require('./models/bookmarks');
 
 // Initiate MongoDB connection.
 
@@ -28,7 +27,6 @@ require('./routes/yt')(app);
 require('./routes/posts')(app);
 require('./routes/quotes')(app);
 require('./routes/users')(app);
-require('./routes/bookmarks')(app);
 
 // Choose port & start the server.
 
