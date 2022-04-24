@@ -6,7 +6,6 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Hash from "./pages/hash";
 import Home from "./pages/home";
-import Yt from "./pages/yt";
 import Search from "./pages/search";
 import Login from "./sections/login";
 import NotFound from "./sections/not-found";
@@ -55,7 +54,6 @@ const AuthRoute = ({component: Component, ...rest}) => (
                                         <Nav.Link eventKey="1" href="/" title="home" className="menu">home</Nav.Link>
                                         <Nav.Link eventKey="2" href="/posts" title="texts" className="menu">posts</Nav.Link>
                                         <Nav.Link eventKey="3" href="/hash" title="hash" className="menu">hash</Nav.Link>
-                                        <Nav.Link eventKey="4" href="/yt" title="yt" className="menu">yt</Nav.Link>
                                         <Nav.Link eventKey="5" href="/search" title="search" className="menu">search</Nav.Link>
                                     </Nav>
                                     <Nav className="justify-content-end">
@@ -84,7 +82,6 @@ export default () => (
             <AuthRoute exact path="/posts" component={Posts}/>
             <AuthRoute exact path="/hash" component={Hash}/>
             <AuthRoute exact path="/home" component={Home}/>
-            <AuthRoute exact path="/yt" component={Yt}/>
             <AuthRoute exact path="/search" component={Search}/>
             <AuthRoute exact path="/" component={Home}/>
             <AuthRoute exact path="*" component={NotFound}/>

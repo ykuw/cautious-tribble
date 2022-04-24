@@ -10,7 +10,6 @@ require("dotenv").config();
 
 // Import models.
 
-require('./models/yt');
 require('./models/posts');
 require('./models/quotes');
 require('./models/users');
@@ -23,7 +22,6 @@ app.use(bodyParser.json());
 
 // Import routes.
 
-require('./routes/yt')(app);
 require('./routes/posts')(app);
 require('./routes/quotes')(app);
 require('./routes/users')(app);
