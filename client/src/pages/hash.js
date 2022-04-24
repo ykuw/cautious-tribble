@@ -35,9 +35,11 @@ class Hash extends Component {
                         {this.state.userInput.length > 0 && (
                             <div className="hash">
                                 <br/>
-                                <font color="#393939">MD5</font> {md5(this.state.userInput).toString()}
+                                {md5(this.state.userInput).toString()} <b>MD5</b>
                                 <br/>
-                                <font color="#393939">SHA1</font> {sha1(this.state.userInput).toString()}
+                                {sha1(this.state.userInput).toString()} <b>SHA1</b>
+                                <br/>
+                                {btoa(this.state.userInput).toString()} <b>Base64</b>
                             </div>
                         )}
                     </Container>
