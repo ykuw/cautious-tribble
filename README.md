@@ -24,7 +24,7 @@ npm run
 Then, on a second terminal concurrently run this for the front-end.
 
 ```
-cd client
+cd interface
 
 npm run
 ```
