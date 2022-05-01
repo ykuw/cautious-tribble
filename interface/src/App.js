@@ -12,7 +12,7 @@ import NotFound from "./sections/not-found";
 import Top from "./sections/top";
 
 const checkAuth = () => {
-    const access_token = localStorage.getItem("access_token"); // Get "access_token".`
+    const access_token = localStorage.getItem("access_token"); // Get "access_token".
     const refresh_token = localStorage.getItem("refresh_token"); // Get expiration date.
 
     if (!access_token || access_token.length < 200 || !refresh_token) {
