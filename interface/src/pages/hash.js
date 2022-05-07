@@ -40,6 +40,8 @@ class Hash extends Component {
                                 {sha1(this.state.userInput).toString()} <b>SHA1</b>
                                 <br/>
                                 {btoa(this.state.userInput).toString()} <b>Base64</b>
+                                <br/>
+                                {decodeURIComponent(this.state.userInput).toString()} <b>Decode URL</b>
                             </div>
                         )}
                     </Container>
