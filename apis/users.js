@@ -3,12 +3,6 @@ const Users = mongoose.model("users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const checkAuth = require("../middleware/check-auth"); // checkAuth function is for making the API to work only with an "access_token".
-const rateLimit = require('express-rate-limit');
-
-const limiter = rateLimit.rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100
-});
 
 module.exports = (app) => {
 
