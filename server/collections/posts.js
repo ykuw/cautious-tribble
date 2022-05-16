@@ -8,7 +8,7 @@ const productSchema = new Schema(
         date: {type: Date, default: Date.now}, // Inserting current date.
     },
     {
-        versionKey: false, // Removing Mongoose's "__v" field. This keys value contains the internal revision of the document.
+        versionKey: false, // Removing Mongoose's "__v" field. This key value contains the internal revision of the document.
     }
 );
 
