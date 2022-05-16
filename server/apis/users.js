@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Users = mongoose.model("users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const checkAuth = require("../middleware/check-auth"); // checkAuth function is for making the API to work only with an "access_token".
+const checkAuth = require("../bridge/check-auth"); // checkAuth function is for making the API to work only with an "access_token".
 
 module.exports = (app) => {
 

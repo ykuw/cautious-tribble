@@ -37,14 +37,14 @@ app.listen(PORT, () => {
     console.log(`Mixing it up on port ${PORT}.`)
 })
 
-// This is to serve up the React files once it's in production. (1, 2)
+// This is to serve up the React files once it's in production. (1, 2).
 
-// 1. Serve static files from the React frontend app
+// 1. Serve static files from the React front-end app.
 
-app.use(express.static(path.join(__dirname, 'interface/build')))
+app.use(express.static(path.join(__dirname, '../interface/build')))
 
-// 2. Anything that doesn't match the above, send back index.html
+// 2. Anything that doesn't match the above, send back index.html.
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/interface/build/index.html'))
+    res.sendFile(path.join(__dirname + '../interface/build/index.html'))
 })

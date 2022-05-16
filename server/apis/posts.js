@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Collection = mongoose.model("posts");
-const checkAuth = require("../middleware/check-auth"); // checkAuth function is for making the API to work only with an "access_token".
+const checkAuth = require("../bridge/check-auth"); // checkAuth function is for making the API to work only with an "access_token".
 const _ = require('lodash');
 
 module.exports = (app) => {
