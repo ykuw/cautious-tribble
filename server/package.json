@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "build": "npm install"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
