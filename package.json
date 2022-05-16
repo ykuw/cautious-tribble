@@ -1,4 +1,5 @@
 {
+  "description": "Main directory.",
   "scripts": {
     "start": "node server/index.js",
     "heroku-postbuild": "cd interface && npm install && npm run build"

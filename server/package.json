@@ -1,4 +1,5 @@
 {
+  "description": "Back-end directory.",
   "scripts": {
     "start": "node index.js"
   }
