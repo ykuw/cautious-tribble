@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js & (cd interface && npm install && npm start)"
+    "start": "node index.js",
+    "build": "cd interface && npm install && npm run build"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
