@@ -6,8 +6,6 @@ const checkAuth = require("../middleware/check-auth"); // checkAuth function is 
 
 module.exports = (app) => {
 
-    app.use('/api', limiter);
-
     app.get(`/api/users`, async (req, res) => {
         let accounts = await Users.find();
         return res.status(200).send(accounts);
