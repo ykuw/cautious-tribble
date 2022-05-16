@@ -1,8 +1,6 @@
 {
   "scripts": {
-    "start": "node server/index.js",
-    "build": "npm install",
-    "heroku-postbuild": "npm install"
+    "start": "node index.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
