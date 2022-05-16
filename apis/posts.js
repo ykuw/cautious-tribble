@@ -5,8 +5,6 @@ const _ = require('lodash');
 
 module.exports = (app) => {
 
-    app.use('/api', limiter);
-
     // Get all.
     app.get("/api/posts/", checkAuth, (req, res) => {
         const page = parseInt(req.query.page) || 0;
