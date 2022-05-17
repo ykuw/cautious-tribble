@@ -2,6 +2,7 @@
   "description": "Main directory.",
   "scripts": {
     "start": "node server/index.js",
+    "build": "cd interface && npm install && npm run build",
     "heroku-postbuild": "cd interface && npm install && npm run build"
   },
   "dependencies": {
