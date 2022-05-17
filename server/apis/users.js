@@ -6,11 +6,13 @@ const checkAuth = require("../bridge/check-auth"); // checkAuth function is for 
 
 module.exports = (app) => {
 
+    // Get all users.
     app.get(`/api/users`, async (req, res) => {
         let accounts = await Users.find();
         return res.status(200).send(accounts);
     });
 
+    // Create a new user.
     app.post("/api/signup", checkAuth, (req, res) => {
         Users.find({email: {$eq: req.body.email}})
             .exec()
@@ -51,6 +53,7 @@ module.exports = (app) => {
             });
     });
 
+    // Authenticate a user.
     app.post("/api/login", (req, res) => {
         Users.find({email: {$eq: req.body.email}})
             .exec()
