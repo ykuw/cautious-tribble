@@ -8,9 +8,10 @@ import Bottom from "../sections/bottom";
 
 class Hash extends Component {
     state = {
-        userInput: "",
+        userInput: "", // User input.
     };
 
+    // Setting the userInput with the value after the user has typed in the input field.
     inputChangedHandler = (event) => {
         this.setState({userInput: event.target.value});
     };
@@ -26,13 +27,13 @@ class Hash extends Component {
                         <Form.Control
                             as="textarea"
                             rows="6"
-                            onChange={this.inputChangedHandler}
-                            value={this.state.userInput}
+                            onChange={this.inputChangedHandler} // Setting the userInput with the value after the user has typed in the input field.
+                            value={this.state.userInput} // Setting the value of the input field.
                             className="textarea"
                             placeholder="Enter the plain text here."
                         />
 
-                        {this.state.userInput.length > 0 && (
+                        {this.state.userInput.length > 0 && ( // If the user has typed in the input field, return the following.
                             <div className="hash">
                                 <br/>
                                 {md5(this.state.userInput).toString()} <b>MD5</b>

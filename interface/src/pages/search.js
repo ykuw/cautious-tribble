@@ -41,7 +41,7 @@ class Search extends Component {
     }
 
     render() {
-        const { posts } = this.state;
+        const { posts } = this.state; // The posts you're searching for.
 
         return (
             <>
