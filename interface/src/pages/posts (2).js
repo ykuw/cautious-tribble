@@ -1,10 +1,10 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import { Helmet } from "react-helmet";
+import {Container} from "react-bootstrap";
+import {Helmet} from "react-helmet";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
-import { Pagination } from "react-bootstrap";
+import {Pagination} from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 import Bottom from "../sections/bottom";
 import Clickable from "../sections/clickable";
@@ -23,12 +23,12 @@ const BasicPagination = (props) => {
     }
 
     return (<Pagination size="sm" className="customPagination">
-            {props.currentPage > 10 && (
-                <Pagination.Prev onClick={() => props.tenChange(props.currentPage, -1)}>Less pages</Pagination.Prev>)}
-            {pages}
-            {props.currentPage + 10 < props.pages && (
-                <Pagination.Next onClick={() => props.tenChange(props.currentPage, 1)}>More pages</Pagination.Next>)}
-        </Pagination>);
+        {props.currentPage > 10 && (
+            <Pagination.Prev onClick={() => props.tenChange(props.currentPage, -1)}>Less pages</Pagination.Prev>)}
+        {pages}
+        {props.currentPage + 10 < props.pages && (
+            <Pagination.Next onClick={() => props.tenChange(props.currentPage, 1)}>More pages</Pagination.Next>)}
+    </Pagination>);
 };
 
 class Logs extends React.Component {
@@ -108,67 +108,67 @@ class Logs extends React.Component {
 
     render() {
         return (<>
-                <div className="container">
-                    <Helmet>
-                        <title>Texts</title>
-                    </Helmet>
-                    <Container>
-                        <form id="feed-form" onSubmit={this.handleSubmit.bind(this)} method="POST" elevation={0}>
-                            <Form.Control
-                                as="textarea"
-                                rows="6"
-                                name="logs"
-                                elevation={0}
-                                value={this.state.log}
-                                onChange={this.onMessageChange.bind(this)}
-                                className="textarea"
-                                placeholder="What's on your mind?"
-                            />
-                            <br/>
+            <div className="container">
+                <Helmet>
+                    <title>Texts</title>
+                </Helmet>
+                <Container>
+                    <form id="feed-form" onSubmit={this.handleSubmit.bind(this)} method="POST" elevation={0}>
+                        <Form.Control
+                            as="textarea"
+                            rows="6"
+                            name="logs"
+                            elevation={0}
+                            value={this.state.log}
+                            onChange={this.onMessageChange.bind(this)}
+                            className="textarea"
+                            placeholder="What's on your mind?"
+                        />
+                        <br/>
 
-                            <div align="right">
-                                <Button type="submit" size="lg">Publish</Button>
-                            </div>
-                            <br/>
-                        </form>
+                        <div align="right">
+                            <Button type="submit" size="lg">Publish</Button>
+                        </div>
+                        <br/>
+                    </form>
 
-                        {/* Displaying alert if no text is entered. 'onClose' sets the 'alert' to 'false' so the button would close. */}
-                        {this.state.alert && (
-                            <Alert variant="danger" onClose={() => this.setState({alert: false})} dismissible>
-                                <Alert.Heading>Oi, mate! You got a warning!</Alert.Heading>
-                                <p>Type something.</p>
-                            </Alert>)}
+                    {/* Displaying alert if no text is entered. 'onClose' sets the 'alert' to 'false' so the button would close. */}
+                    {this.state.alert && (
+                        <Alert variant="danger" onClose={() => this.setState({alert: false})} dismissible>
+                            <Alert.Heading>Oi, mate! You got a warning!</Alert.Heading>
+                            <p>Type something.</p>
+                        </Alert>)}
 
-                        {this.state.data.map((fields) => {
-                            const {_id, log, date} = fields;
-                            return (<React.Fragment key={_id}>
-                                    <ListGroup>
-                                        <ListGroup.Item className="feed">
-                                            {/* Clickable() contains the config for the processString() function */}
-                                            {processString(Clickable())(log)}
-                                            <br/>
-                                            <small className="text-dark align-bottom">{formatDate(date)}</small>
-                                        </ListGroup.Item>
-                                    </ListGroup>
+                    {this.state.data.map((fields) => {
+                        const {_id, log, date} = fields;
+                        return (<React.Fragment key={_id}>
+                            <ListGroup>
+                                <ListGroup.Item className="feed">
+                                    {/* Clickable() contains the config for the processString() function */}
+                                    {processString(Clickable())(log)}
                                     <br/>
-                                </React.Fragment>);
-                        })}
+                                    <small className="text-dark align-bottom">{formatDate(date)}</small>
+                                </ListGroup.Item>
+                            </ListGroup>
+                            <br/>
+                        </React.Fragment>);
+                    })}
 
-                        {/* Pagination. */}
-                        {this.state.totalLogs > this.state.limit && (<BasicPagination
-                                pages={this.state.totalLogs / this.state.limit}
-                                nextPage={this.nextPage}
-                                currentPage={this.state.currentPage}
-                                tenChange={this.tenChange}
-                                hundreadChange={this.hundredChange}
-                            />)}
+                    {/* Pagination. */}
+                    {this.state.totalLogs > this.state.limit && (<BasicPagination
+                        pages={this.state.totalLogs / this.state.limit}
+                        nextPage={this.nextPage}
+                        currentPage={this.state.currentPage}
+                        tenChange={this.tenChange}
+                        hundreadChange={this.hundredChange}
+                    />)}
 
-                    </Container>
-                </div>
+                </Container>
+            </div>
 
-                {/* Page footer. */}
-                <Bottom/>
-            </>);
+            {/* Page footer. */}
+            <Bottom/>
+        </>);
     }
 
     // As you type, set the text to the 'log' element.

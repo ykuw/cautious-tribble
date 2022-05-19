@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Container } from "react-bootstrap";
-import { Helmet } from "react-helmet";
+import React, {Component} from "react";
+import {Container} from "react-bootstrap";
+import {Helmet} from "react-helmet";
 import Form from "react-bootstrap/Form";
 import Bottom from "../sections/bottom";
 import Axios from "axios";
@@ -42,53 +42,53 @@ class Search extends Component {
         const {posts} = this.state; // The posts you're searching for.
 
         return (<>
-                <div className="container">
-                    <Helmet>
-                        <title>Search</title>
-                    </Helmet>
-                    <Container>
-                        <form id="feed-form" onSubmit={this.handleSubmit}>
-                            <Form.Control
-                                type="text"
-                                onChange={this.inputChangedHandler} // Remember what you type as you type it.
-                                value={this.state.userInput} // The value that it's going to be sent over to search.
-                                className="textarea"
-                                placeholder="What are you looking for?"
-                            />
-                            <br/>
-                            <div align="right">
-                                <Button type="submit" size="lg">Search</Button>
-                            </div>
-                            <br/>
-                        </form>
+            <div className="container">
+                <Helmet>
+                    <title>Search</title>
+                </Helmet>
+                <Container>
+                    <form id="feed-form" onSubmit={this.handleSubmit}>
+                        <Form.Control
+                            type="text"
+                            onChange={this.inputChangedHandler} // Remember what you type as you type it.
+                            value={this.state.userInput} // The value that it's going to be sent over to search.
+                            className="textarea"
+                            placeholder="What are you looking for?"
+                        />
+                        <br/>
+                        <div align="right">
+                            <Button type="submit" size="lg">Search</Button>
+                        </div>
+                        <br/>
+                    </form>
 
-                        {posts.map((fields) => {
-                            const {_id, log, date} = fields; // Getting the fields in a const as it is neater and more informative.
-                            return (<React.Fragment key={_id}>
-                                    <ListGroup>
-                                        <ListGroup.Item className="feed">
-                                            {/* Clickable() contains the config for the processString() function */}
-                                            {processString(Clickable())(log)}
-                                            <br/>
-                                            <small className="text-dark align-bottom">{formatDate(date)}</small>
-                                        </ListGroup.Item>
-                                    </ListGroup>
+                    {posts.map((fields) => {
+                        const {_id, log, date} = fields; // Getting the fields in a const as it is neater and more informative.
+                        return (<React.Fragment key={_id}>
+                            <ListGroup>
+                                <ListGroup.Item className="feed">
+                                    {/* Clickable() contains the config for the processString() function */}
+                                    {processString(Clickable())(log)}
                                     <br/>
-                                </React.Fragment>);
-                        })}
+                                    <small className="text-dark align-bottom">{formatDate(date)}</small>
+                                </ListGroup.Item>
+                            </ListGroup>
+                            <br/>
+                        </React.Fragment>);
+                    })}
 
-                        {this.state.alert && (
-                            <Alert variant="danger" onClose={() => this.setState({alert: false})} dismissible>
-                                <Alert.Heading>Oi, mate! You got a warning!</Alert.Heading>
-                                <p>Type something.</p>
-                            </Alert>)}
+                    {this.state.alert && (
+                        <Alert variant="danger" onClose={() => this.setState({alert: false})} dismissible>
+                            <Alert.Heading>Oi, mate! You got a warning!</Alert.Heading>
+                            <p>Type something.</p>
+                        </Alert>)}
 
-                    </Container>
-                </div>
+                </Container>
+            </div>
 
-                {/* Page footer. */}
-                <Bottom/>
-            </>)
+            {/* Page footer. */}
+            <Bottom/>
+        </>)
     }
 
     handleSubmit = (event) => {

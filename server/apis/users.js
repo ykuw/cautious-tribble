@@ -7,7 +7,7 @@ const checkAuth = require("../bridge/check-auth"); // checkAuth function is for 
 module.exports = (app) => {
 
     // Get all users.
-    app.get(`/api/users`, async(req, res) => {
+    app.get(`/api/users`, async (req, res) => {
         let accounts = await Users.find();
         return res.status(200).send(accounts);
     });

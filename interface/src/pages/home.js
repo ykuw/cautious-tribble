@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React from "react";
-import { Helmet } from "react-helmet";
+import {Helmet} from "react-helmet";
 
 export default class Home extends React.Component {
     state = {

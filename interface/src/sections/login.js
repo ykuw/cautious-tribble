@@ -2,8 +2,8 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
-import { Container } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import {Container} from "react-bootstrap";
+import {Redirect} from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 
 class Login extends React.Component {
@@ -31,7 +31,7 @@ class Login extends React.Component {
 
         Axios.post("/api/login", data, { // Sending the credentials entered and obtaining the "access_token".
             headers,
-        }).then(function(response) {
+        }).then(function (response) {
             localStorage.setItem("access_token", response.data.access_token); // Get "access_token".
             localStorage.setItem("refresh_token", Math.round(new Date().getTime() / 1000 + 3600)); // Unix timestamp with 1 hour ahead of the current time.
         }).then(() => this.setState(() => ({
@@ -52,59 +52,59 @@ class Login extends React.Component {
         }
 
         return (<div className="container" align="center">
-                <div align="left" className="fixed-top">
-                    <p/>
-                    <p className="tab-space">
-                        Please sign in to have access to the content on this website.
-                    </p>
-                    <p/>
-                </div>
+            <div align="left" className="fixed-top">
+                <p/>
+                <p className="tab-space">
+                    Please sign in to have access to the content on this website.
+                </p>
+                <p/>
+            </div>
+            <br/>
+            <Container>
+                <Form onSubmit={this.handleSubmit.bind(this)}>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            onChange={this.handleChange}
+                            className="login"
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            onChange={this.handleChange}
+                            className="login"
+                        />
+                    </Form.Group>
+                    <Button type="submit" size="lg">
+                        Sign in
+                    </Button>
+                </Form>
                 <br/>
-                <Container>
-                    <Form onSubmit={this.handleSubmit.bind(this)}>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Control
-                                type="email"
-                                placeholder="Email"
-                                name="email"
-                                onChange={this.handleChange}
-                                className="login"
-                            />
-                        </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Control
-                                type="password"
-                                placeholder="Password"
-                                name="password"
-                                onChange={this.handleChange}
-                                className="login"
-                            />
-                        </Form.Group>
-                        <Button type="submit" size="lg">
-                            Sign in
-                        </Button>
-                    </Form>
-                    <br/>
-
-                    {/* Displaying an alert if wrong credentials. */}
-                    {this.state.alert && (<div align="left">
-                            <Alert
-                                variant="danger"
-                                onClose={() => this.setState({alert: false})}
-                                dismissible
-                            >
-                                <Alert.Heading>Oi, mate! You got an error!</Alert.Heading>
-                                <p>Try again.</p>
-                            </Alert>
-                        </div>)}
-                </Container>
-                <div align="left" className="fixed-bottom">
-                    <p/>
-                    <p className="tab-space"/>
-                    <p/>
-                </div>
-            </div>);
+                {/* Displaying an alert if wrong credentials. */}
+                {this.state.alert && (<div align="left">
+                    <Alert
+                        variant="danger"
+                        onClose={() => this.setState({alert: false})}
+                        dismissible
+                    >
+                        <Alert.Heading>Oi, mate! You got an error!</Alert.Heading>
+                        <p>Try again.</p>
+                    </Alert>
+                </div>)}
+            </Container>
+            <div align="left" className="fixed-bottom">
+                <p/>
+                <p className="tab-space"/>
+                <p/>
+            </div>
+        </div>);
     }
 }
 

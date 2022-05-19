@@ -44,7 +44,7 @@ module.exports = (app) => {
     });
 
     // Create.
-    app.post(`/api/posts/`, checkAuth, async(req, res) => {
+    app.post(`/api/posts/`, checkAuth, async (req, res) => {
         let posts = await Collection.create(req.body);
         return res.status(201).send({
             error: false, posts,
@@ -52,7 +52,7 @@ module.exports = (app) => {
     });
 
     // Change.
-    app.put(`/api/posts/:id`, checkAuth, async(req, res) => {
+    app.put(`/api/posts/:id`, checkAuth, async (req, res) => {
         const {id} = req.params;
 
         let posts = await Collection.findByIdAndUpdate(id, req.body);
@@ -63,7 +63,7 @@ module.exports = (app) => {
     });
 
     // Delete.
-    app.delete(`/api/posts/:id`, checkAuth, async(req, res) => {
+    app.delete(`/api/posts/:id`, checkAuth, async (req, res) => {
         const {id} = req.params;
 
         let posts = await Collection.findByIdAndDelete(id);
