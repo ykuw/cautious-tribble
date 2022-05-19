@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import {Container} from "react-bootstrap";
-import {Helmet} from "react-helmet";
+import React, { Component } from "react";
+import { Container } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 import md5 from "crypto-js/md5";
 import sha1 from "crypto-js/sha1";
 import Form from "react-bootstrap/Form";
@@ -17,8 +17,7 @@ class Hash extends Component {
     };
 
     render() {
-        return (
-            <>
+        return (<>
                 <div className="container">
                     <Helmet>
                         <title>Hash</title>
@@ -43,15 +42,13 @@ class Hash extends Component {
                                 {btoa(this.state.userInput).toString()} <b>Base64</b>
                                 <br/>
                                 {decodeURIComponent(this.state.userInput).toString()} <b>Decode URL</b>
-                            </div>
-                        )}
+                            </div>)}
                     </Container>
                 </div>
 
                 {/* Page footer. */}
                 <Bottom/>
-            </>
-        )
+            </>)
     }
 }
 

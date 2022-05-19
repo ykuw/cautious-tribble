@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Bottom from "./bottom";
 
 // Page returned only if you're authenticated.
@@ -6,14 +6,12 @@ import Bottom from "./bottom";
 
 class NotFound extends Component {
     render() {
-        return (
-            <>
+        return (<>
                 <div align="center">
                     <p>Sorry, mate. This page doesn't exist.</p>
                 </div>
                 <Bottom/>
-            </>
-        );
+            </>);
     }
 }
 

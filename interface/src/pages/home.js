@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React from "react";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 export default class Home extends React.Component {
     state = {
@@ -16,19 +16,17 @@ export default class Home extends React.Component {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
-        })
-            .then((response) => {
-                this.setState({
-                    quotes: response.data, // Data is an array of quotes.
-                    isLoading: false, // Set loading to false.
-                });
-            })
-            .catch((error) => this.setState({error, isLoading: false}));
+        }).then((response) => {
+            this.setState({
+                quotes: response.data, // Data is an array of quotes.
+                isLoading: false, // Set loading to false.
+            });
+        }).catch((error) => this.setState({error, isLoading: false}));
     }
 
     componentDidMount() { // When the component mounts, get the quotes.
         this.getQuotes(); // Get quotes.
-        this.interval = setInterval(() => this.setState({ time: Date.now() }), 1); // Set interval for time to refresh every millisecond.
+        this.interval = setInterval(() => this.setState({time: Date.now()}), 1); // Set interval for time to refresh every millisecond.
     }
 
     componentWillUnmount() {
@@ -61,13 +59,13 @@ export default class Home extends React.Component {
                                                 {author} in <cite title="Source">{source}</cite>
                                             </footer>
                                         </blockquote>
-                                    </div>
-                                ); // End render.
+                                    </div>); // End render.
                             }) // End map.
                         ) : ( // Else, render.
                             <p>Loading...</p> // Loading.
                         )} {/* End render. */}
-                    </div> {/* End container for the tabs. */}
+                    </div>
+                    {/* End container for the tabs. */}
 
                     <br/> {/* Break. */}
                     <h1>Age</h1>
@@ -85,8 +83,7 @@ export default class Home extends React.Component {
                         <p/>
                     </div>
                 </div>
-            </>
-        );
+            </>);
     }
 }
 
@@ -98,9 +95,9 @@ function displayAge() {
     const m = currentDate.getMonth() - birthDate.getMonth(); // Get the month.
     const h = currentDate.getHours() - birthDate.getHours(); // Get the hour.
     const d = Math.abs(currentDate.getDate() - birthDate.getDate()); // Get the day.
-    // Using Math.abs to get the absolute value of the difference between the two dates.
+// Using Math.abs to get the absolute value of the difference between the two dates.
     const min = currentDate.getMinutes() - birthDate.getMinutes(); // Get the minute.
     const s = currentDate.getSeconds() - birthDate.getSeconds(); // Get the seconds.
     const ms = currentDate.getMilliseconds() - birthDate.getMilliseconds(); // Get the milliseconds.
-    return y + " years, " + m + " months, " + d + " days, " + h + " hours, " + min + " minutes, " + s + " seconds and "+ ms + " milliseconds old.";
+    return y + " years, " + m + " months, " + d + " days, " + h + " hours, " + min + " minutes, " + s + " seconds and " + ms + " milliseconds old.";
 }

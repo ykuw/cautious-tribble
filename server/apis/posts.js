@@ -10,26 +10,19 @@ module.exports = (app) => {
         const page = parseInt(req.query.page) || 0;
         const limit = parseInt(req.query.limit) || 3; // If not limit provided in the API call, return 3 only.
         const query = {};
-        Collection.find(query)
-            .skip(page * limit)
-            .limit(limit)
-            .sort({date: -1})
-            .exec((err, doc) => {
+        Collection.find(query).skip(page * limit).limit(limit).sort({date: -1}).exec((err, doc) => {
+            if (err) {
+                return res.json(err);
+            }
+            Collection.countDocuments(query).exec((count_error, count) => {
                 if (err) {
-                    return res.json(err);
+                    return res.json(count_error);
                 }
-                Collection.countDocuments(query).exec((count_error, count) => {
-                    if (err) {
-                        return res.json(count_error);
-                    }
-                    return res.json({
-                        total: count,
-                        page: page,
-                        page_size: doc.length,
-                        posts: doc
-                    });
+                return res.json({
+                    total: count, page: page, page_size: doc.length, posts: doc
                 });
             });
+        });
     });
 
     // Search.
@@ -51,35 +44,32 @@ module.exports = (app) => {
     });
 
     // Create.
-    app.post(`/api/posts/`, checkAuth, async (req, res) => {
+    app.post(`/api/posts/`, checkAuth, async(req, res) => {
         let posts = await Collection.create(req.body);
         return res.status(201).send({
-            error: false,
-            posts,
+            error: false, posts,
         });
     });
 
     // Change.
-    app.put(`/api/posts/:id`, checkAuth, async (req, res) => {
+    app.put(`/api/posts/:id`, checkAuth, async(req, res) => {
         const {id} = req.params;
 
         let posts = await Collection.findByIdAndUpdate(id, req.body);
 
         return res.status(202).send({
-            error: false,
-            posts,
+            error: false, posts,
         });
     });
 
     // Delete.
-    app.delete(`/api/posts/:id`, checkAuth, async (req, res) => {
+    app.delete(`/api/posts/:id`, checkAuth, async(req, res) => {
         const {id} = req.params;
 
         let posts = await Collection.findByIdAndDelete(id);
 
         return res.status(202).send({
-            error: false,
-            posts,
+            error: false, posts,
         });
     });
 };

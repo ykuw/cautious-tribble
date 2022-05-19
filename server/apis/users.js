@@ -7,94 +7,78 @@ const checkAuth = require("../bridge/check-auth"); // checkAuth function is for 
 module.exports = (app) => {
 
     // Get all users.
-    app.get(`/api/users`, async (req, res) => {
+    app.get(`/api/users`, async(req, res) => {
         let accounts = await Users.find();
         return res.status(200).send(accounts);
     });
 
     // Create a new user.
     app.post("/api/signup", checkAuth, (req, res) => {
-        Users.find({email: {$eq: req.body.email}})
-            .exec()
-            .then((user) => {
-                if (user.length >= 1) {
-                    return res.status(409).json({
-                        message: "That email is already registered.",
-                    });
-                } else {
-                    bcrypt.hash(req.body.password, 10, (err, hash) => {
-                        if (err) {
-                            return res.status(500).json({
+        Users.find({email: {$eq: req.body.email}}).exec().then((user) => {
+            if (user.length >= 1) {
+                return res.status(409).json({
+                    message: "That email is already registered.",
+                });
+            } else {
+                bcrypt.hash(req.body.password, 10, (err, hash) => {
+                    if (err) {
+                        return res.status(500).json({
+                            error: err,
+                        });
+                    } else {
+                        const user = new Users({
+                            _id: new mongoose.Types.ObjectId(), email: req.body.email, password: hash,
+                        });
+                        user.save().then((result) => {
+                            console.log(result);
+                            res.status(201).json({
+                                message: "New bloke added.",
+                            });
+                        }).catch((err) => {
+                            console.log(err);
+                            res.status(500).json({
                                 error: err,
                             });
-                        } else {
-                            const user = new Users({
-                                _id: new mongoose.Types.ObjectId(),
-                                email: req.body.email,
-                                password: hash,
-                            });
-                            user
-                                .save()
-                                .then((result) => {
-                                    console.log(result);
-                                    res.status(201).json({
-                                        message: "New bloke added.",
-                                    });
-                                })
-                                .catch((err) => {
-                                    console.log(err);
-                                    res.status(500).json({
-                                        error: err,
-                                    });
-                                });
-                        }
-                    });
-                }
-            });
+                        });
+                    }
+                });
+            }
+        });
     });
 
     // Authenticate a user.
     app.post("/api/login", (req, res) => {
-        Users.find({email: {$eq: req.body.email}})
-            .exec()
-            .then((user) => {
-                if (user.length < 1) {
+        Users.find({email: {$eq: req.body.email}}).exec().then((user) => {
+            if (user.length < 1) {
+                return res.status(401).json({
+                    message: "Oi, mate. Not good.",
+                });
+            }
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+                if (err) {
                     return res.status(401).json({
                         message: "Oi, mate. Not good.",
                     });
                 }
-                bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-                    if (err) {
-                        return res.status(401).json({
-                            message: "Oi, mate. Not good.",
-                        });
-                    }
-                    if (result) {
-                        const token = jwt.sign(
-                            {
-                                email: user[0].email,
-                                userId: user[0]._id,
-                            },
-                            process.env.JWT_KEY,
-                            {
-                                expiresIn: "1h",
-                            }
-                        );
-                        return res.status(200).json({
-                            message: "Here you go, sir.",
-                            access_token: token,
-                        });
-                    }
-                    res.status(401).json({
-                        message: "Oi, mate. Not good.",
+                if (result) {
+                    const token = jwt.sign({
+                        email: user[0].email, userId: user[0]._id,
+                    }, process.env.JWT_KEY, {
+                        expiresIn: "1h",
                     });
-                });
-            })
-            .catch((err) => {
-                console.log(err);
-                res.status(500).json({
-                    error: err,
+                    return res.status(200).json({
+                        message: "Here you go, sir.", access_token: token,
+                    });
+                }
+                res.status(401).json({
+                    message: "Oi, mate. Not good.",
                 });
             });
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                error: err,
+            });
+        });
     });
 };

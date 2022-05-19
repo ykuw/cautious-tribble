@@ -1,6 +1,6 @@
 import React from "react";
-import {Container} from "react-bootstrap";
-import {Helmet} from "react-helmet";
+import { Container } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -25,33 +25,27 @@ class Logs extends React.Component {
     // Function for the API requests, headers and what needs to be included.
     dataRequest = (URL, methodType, params) => {
         return fetch(URL, {
-            method: methodType,
-            headers: {
+            method: methodType, headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-            body: JSON.stringify(params),
-        })
-            .then((data) => {
-                return data.json();
-            })
-            .catch((err) => {
-                return err;
-            });
+            }, body: JSON.stringify(params),
+        }).then((data) => {
+            return data.json();
+        }).catch((err) => {
+            return err;
+        });
     };
 
     // Paginating the results. Getting posts.
     getPosts = (currentPage) => {
-        this.dataRequest("/api/posts/?page=" + currentPage + "&limit=" + this.state.limit, "GET")
-            .then((data) => {
-                this.setState({
-                    data: data.posts,
-                });
-            })
-            .catch((err) => {
-                console.log("Error fetching posts, mate. ", err);
+        this.dataRequest("/api/posts/?page=" + currentPage + "&limit=" + this.state.limit, "GET").then((data) => {
+            this.setState({
+                data: data.posts,
             });
+        }).catch((err) => {
+            console.log("Error fetching posts, mate. ", err);
+        });
     };
 
     // Get posts on page load.
@@ -61,8 +55,7 @@ class Logs extends React.Component {
 
     // Render the posts.
     render() {
-        return (
-            <>
+        return (<>
                 <div className="container">
                     <Helmet>
                         <title>Texts</title>
@@ -92,13 +85,11 @@ class Logs extends React.Component {
                             <Alert variant="danger" onClose={() => this.setState({alert: false})} dismissible>
                                 <Alert.Heading>Oi, mate! You got a warning!</Alert.Heading>
                                 <p>Type something.</p>
-                            </Alert>
-                        )}
+                            </Alert>)}
 
                         {this.state.data.map((fields) => {
                             const {_id, log, date} = fields;
-                            return (
-                                <React.Fragment key={_id}>
+                            return (<React.Fragment key={_id}>
                                     <ListGroup>
                                         <ListGroup.Item className="feed">
                                             {/* Clickable() contains the config for the processString() function */}
@@ -108,8 +99,7 @@ class Logs extends React.Component {
                                         </ListGroup.Item>
                                     </ListGroup>
                                     <br/>
-                                </React.Fragment>
-                            );
+                                </React.Fragment>);
                         })}
 
                     </Container>
@@ -117,8 +107,7 @@ class Logs extends React.Component {
 
                 {/* Page footer. */}
                 <Bottom/>
-            </>
-        );
+            </>);
     }
 
     // As you type, set the text to the 'log' element.

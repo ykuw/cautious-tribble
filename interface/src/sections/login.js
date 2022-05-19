@@ -2,16 +2,15 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
-import {Container} from "react-bootstrap";
-import {Redirect} from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 
 class Login extends React.Component {
 
     state = {
         email: "", // Will be filled with email and password.
-        password: "",
-        toDashboard: false, // This to be used for redirection.
+        password: "", toDashboard: false, // This to be used for redirection.
         alert: false // Alert for wrong credentials.
     };
 
@@ -23,8 +22,7 @@ class Login extends React.Component {
         e.preventDefault();
 
         const data = { // Creating the data to load the POST API.
-            email: this.state.email,
-            password: this.state.password,
+            email: this.state.email, password: this.state.password,
         };
 
         const headers = {
@@ -33,14 +31,12 @@ class Login extends React.Component {
 
         Axios.post("/api/login", data, { // Sending the credentials entered and obtaining the "access_token".
             headers,
-        })
-            .then(function (response) {
-                localStorage.setItem("access_token", response.data.access_token); // Get "access_token".
-                localStorage.setItem("refresh_token", Math.round(new Date().getTime() / 1000 + 3600)); // Unix timestamp with 1 hour ahead of the current time.
-            })
-            .then(() => this.setState(() => ({
-                toDashboard: true // Setting the "toDashboard" if the API POST is successful.
-            })))
+        }).then(function(response) {
+            localStorage.setItem("access_token", response.data.access_token); // Get "access_token".
+            localStorage.setItem("refresh_token", Math.round(new Date().getTime() / 1000 + 3600)); // Unix timestamp with 1 hour ahead of the current time.
+        }).then(() => this.setState(() => ({
+            toDashboard: true // Setting the "toDashboard" if the API POST is successful.
+        })))
             // .catch(function (error) {
             // 	console.log('Tough luck. "' + error + '"'); // In case the login doesn't work.
             // });
@@ -55,8 +51,7 @@ class Login extends React.Component {
             return <Redirect to='/'/>
         }
 
-        return (
-            <div className="container" align="center">
+        return (<div className="container" align="center">
                 <div align="left" className="fixed-top">
                     <p/>
                     <p className="tab-space">
@@ -93,8 +88,7 @@ class Login extends React.Component {
                     <br/>
 
                     {/* Displaying an alert if wrong credentials. */}
-                    {this.state.alert && (
-                        <div align="left">
+                    {this.state.alert && (<div align="left">
                             <Alert
                                 variant="danger"
                                 onClose={() => this.setState({alert: false})}
@@ -103,16 +97,14 @@ class Login extends React.Component {
                                 <Alert.Heading>Oi, mate! You got an error!</Alert.Heading>
                                 <p>Try again.</p>
                             </Alert>
-                        </div>
-                    )}
+                        </div>)}
                 </Container>
                 <div align="left" className="fixed-bottom">
                     <p/>
                     <p className="tab-space"/>
                     <p/>
                 </div>
-            </div>
-        );
+            </div>);
     }
 }
 

@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import {Container} from "react-bootstrap";
-import {Helmet} from "react-helmet";
+import React, { Component } from "react";
+import { Container } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 import Form from "react-bootstrap/Form";
 import Bottom from "../sections/bottom";
 import Axios from "axios";
@@ -31,20 +31,17 @@ class Search extends Component {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             }
-        })
-            .then((response) => {
-                this.setState({
-                    posts: response.data
-                });
-            })
-            .catch((error) => this.setState({error}));
+        }).then((response) => {
+            this.setState({
+                posts: response.data
+            });
+        }).catch((error) => this.setState({error}));
     }
 
     render() {
-        const { posts } = this.state; // The posts you're searching for.
+        const {posts} = this.state; // The posts you're searching for.
 
-        return (
-            <>
+        return (<>
                 <div className="container">
                     <Helmet>
                         <title>Search</title>
@@ -67,8 +64,7 @@ class Search extends Component {
 
                         {posts.map((fields) => {
                             const {_id, log, date} = fields; // Getting the fields in a const as it is neater and more informative.
-                            return (
-                                <React.Fragment key={_id}>
+                            return (<React.Fragment key={_id}>
                                     <ListGroup>
                                         <ListGroup.Item className="feed">
                                             {/* Clickable() contains the config for the processString() function */}
@@ -78,24 +74,21 @@ class Search extends Component {
                                         </ListGroup.Item>
                                     </ListGroup>
                                     <br/>
-                                </React.Fragment>
-                            );
+                                </React.Fragment>);
                         })}
 
                         {this.state.alert && (
                             <Alert variant="danger" onClose={() => this.setState({alert: false})} dismissible>
                                 <Alert.Heading>Oi, mate! You got a warning!</Alert.Heading>
                                 <p>Type something.</p>
-                            </Alert>
-                        )}
+                            </Alert>)}
 
                     </Container>
                 </div>
 
                 {/* Page footer. */}
                 <Bottom/>
-            </>
-        )
+            </>)
     }
 
     handleSubmit = (event) => {

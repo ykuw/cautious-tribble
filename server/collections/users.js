@@ -1,22 +1,16 @@
 const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
-const usersSchema = new Schema(
-    {
-        username: {String},
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-        },
-        password: {type: String, required: true},
-        date: {type: Date, default: Date.now}, // Inserting current date.
-    },
-    {
-        versionKey: false, // Removing Mongoose's "__v" field. This key value contains the internal revision of the document.
-    }
-);
+const usersSchema = new Schema({
+    username: {String}, email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    }, password: {type: String, required: true}, date: {type: Date, default: Date.now}, // Inserting current date.
+}, {
+    versionKey: false, // Removing Mongoose's "__v" field. This key value contains the internal revision of the document.
+});
 
 // mongoose.set('useCreateIndex', true);
 mongoose.pluralize(null);

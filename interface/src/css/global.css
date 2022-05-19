@@ -77,9 +77,9 @@ body {
     box-shadow: none !important;
     border-color: #0e0e0e;
 }
+
 .customPagination > li.active > a,
-.customPagination > li > a:hover
-{
+.customPagination > li > a:hover {
     color: #b7b7b7;
     border-color: #0e0e0e;
 }
@@ -142,7 +142,7 @@ body {
 .textarea, .textarea:focus {
     background-color: #0e0e0e;
     color: #b7b7b7;
-    box-shadow:none !important;
+    box-shadow: none !important;
     border: none;
 }
 
@@ -159,7 +159,7 @@ body {
 .btn {
     background-color: #0e0e0e !important;
     color: #b7b7b7 !important;
-    box-shadow:none !important;
+    box-shadow: none !important;
     border: none;
 }
 
