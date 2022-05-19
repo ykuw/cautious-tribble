@@ -36,7 +36,7 @@ const checkAuth = () => {
 };
 
 function handleSubmit() {
-    localStorage.clear();
+    localStorage.clear();  // Clear localStorage. Logging out the user after clicking the logout button.
 }
 
 const AuthRoute = ({component: Component, ...rest}) => (<Route
