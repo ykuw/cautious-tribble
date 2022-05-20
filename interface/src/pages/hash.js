@@ -25,7 +25,7 @@ class Hash extends Component {
                 <Container>
                     <Form.Control
                         as="textarea"
-                        rows="6"
+                        rows="5"
                         onChange={this.inputChangedHandler} // Setting the userInput with the value after the user has typed in the input field.
                         value={this.state.userInput} // Setting the value of the input field.
                         className="textarea"

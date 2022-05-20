@@ -64,7 +64,7 @@ class Logs extends React.Component {
                     <form id="feed-form" onSubmit={this.handleSubmit.bind(this)} method="POST" elevation={0}>
                         <Form.Control
                             as="textarea"
-                            rows="6"
+                            rows="5"
                             name="logs"
                             elevation={0}
                             value={this.state.log}
