@@ -6,7 +6,7 @@ Create file named `.env` in the root directory of the project and fill it with t
 - [JWT_KEY](https://jwt.io/introduction)
 - [MONGODB_URI](https://www.mongodb.com/docs/manual/reference/connection-string/)
 
-Then in the MongoDB database you need to have 3 collections named:
+In the MongoDB database create three collections named:
 - users
 - posts
 - quotes
