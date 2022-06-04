@@ -51,9 +51,8 @@ const AuthRoute = ({component: Component, ...rest}) => (<Route
                                 <Nav className="mr-auto">
                                     <Nav.Link eventKey="1" href="/" title="home" className="menu">home</Nav.Link>
                                     <Nav.Link eventKey="2" href="/posts" title="texts" className="menu">posts</Nav.Link>
+                                    <Nav.Link eventKey="5" href="/search" title="search" className="menu">search</Nav.Link>
                                     <Nav.Link eventKey="3" href="/hash" title="hash" className="menu">hash</Nav.Link>
-                                    <Nav.Link eventKey="5" href="/search" title="search"
-                                              className="menu">search</Nav.Link>
                                 </Nav>
                                 <Nav className="justify-content-end">
                                     <Nav.Link eventKey="6" href="/" title="out" className="menu"
