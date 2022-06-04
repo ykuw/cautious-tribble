@@ -72,10 +72,10 @@ const AuthRoute = ({component: Component, ...rest}) => (<Route
 export default () => (<BrowserRouter>
         <Switch>
             <Route exact path="/login" render={(props) => <Login {...props} />}/>
-            <AuthRoute exact path="/posts" component={Posts}/>
-            <AuthRoute exact path="/hash" component={Hash}/>
             <AuthRoute exact path="/home" component={Home}/>
+            <AuthRoute exact path="/posts" component={Posts}/>
             <AuthRoute exact path="/search" component={Search}/>
+            <AuthRoute exact path="/hash" component={Hash}/>
             <AuthRoute exact path="/" component={Home}/>
             <AuthRoute exact path="*" component={NotFound}/>
         </Switch>
