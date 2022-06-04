@@ -17,7 +17,7 @@ class Logs extends React.Component {
             data: [], // API data. The posts.
             currentPage: 0, // Current page.
             totalLogs: 0, // Total posts.
-            limit: 5, // Posts per page limit.
+            limit: 3, // Posts per page limit.
             alert: false // Alert to show if text is invalid.
         };
     }
@@ -58,7 +58,7 @@ class Logs extends React.Component {
         return (<>
             <div className="container">
                 <Helmet>
-                    <title>Texts</title>
+                    <title>Posts</title>
                 </Helmet>
                 <Container>
                     <form id="feed-form" onSubmit={this.handleSubmit.bind(this)} method="POST" elevation={0}>
