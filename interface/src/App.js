@@ -50,7 +50,7 @@ const AuthRoute = ({component: Component, ...rest}) => (<Route
                             <Navbar.Collapse>
                                 <Nav className="mr-auto">
                                     <Nav.Link eventKey="1" href="/" title="home" className="menu">home</Nav.Link>
-                                    <Nav.Link eventKey="2" href="/posts" title="texts" className="menu">posts</Nav.Link>
+                                    <Nav.Link eventKey="2" href="/posts" title="posts" className="menu">posts</Nav.Link>
                                     <Nav.Link eventKey="5" href="/search" title="search" className="menu">search</Nav.Link>
                                     <Nav.Link eventKey="3" href="/hash" title="hash" className="menu">hash</Nav.Link>
                                 </Nav>

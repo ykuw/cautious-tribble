@@ -37,6 +37,8 @@ export default class Home extends React.Component {
 
         const {isLoading, quotes} = this.state; // Destructure state.
 
+        const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'};
+
         return ( // Render.
             <>
                 <div className="container"> {/* Container for the page. */}
@@ -44,9 +46,7 @@ export default class Home extends React.Component {
                         <title>Home</title> {/* Title for the page. */}
                     </Helmet>
 
-                    <h1>Quote</h1>
-                    <br/> {/* Break. */}
-
+                    <h3>Quote</h3>
                     <div className="tab-space"> {/* Container for the tabs. */}
                         {!isLoading ? ( // If not loading, render.
                             quotes.map((fields) => { // Map through quotes.
@@ -54,10 +54,7 @@ export default class Home extends React.Component {
                                 return ( // Render.
                                     <div key={_id}> {/* Container for the quote. */}
                                         <blockquote> {/* Quote. */}
-                                            <p>"{quote}"</p>
-                                            <footer> {/* Footer for the quote. */}
-                                                {author} in <cite title="Source">{source}</cite>
-                                            </footer>
+                                            <p><i>"{quote}" ({author}, <cite title="Source">{source}</cite>)</i></p>
                                         </blockquote>
                                     </div>); // End render.
                             }) // End map.
@@ -65,12 +62,17 @@ export default class Home extends React.Component {
                             <p>Loading...</p> // Loading.
                         )} {/* End render. */}
                     </div>
-                    {/* End container for the tabs. */}
 
-                    <br/> {/* Break. */}
-                    <h1>Age</h1>
                     <br/>
 
+                    <h3>Today</h3>
+                    <div className="tab-space">
+                        <p>{new Intl.DateTimeFormat('en-GB', options).format(Date.now())}</p>
+                    </div>
+
+                    <br/>
+
+                    <h3>Age</h3>
                     <div className="tab-space">
                         <p>{displayAge()}</p> {/* Display age. */}
                     </div>
@@ -82,6 +84,7 @@ export default class Home extends React.Component {
                         <p className="tab-space">&nbsp;&nbsp;'sup</p> {/* Footer for the page. */}
                         <p/>
                     </div>
+
                 </div>
             </>);
     }
@@ -99,5 +102,5 @@ function displayAge() {
     const min = currentDate.getMinutes() - birthDate.getMinutes(); // Get the minute.
     const s = currentDate.getSeconds() - birthDate.getSeconds(); // Get the seconds.
     const ms = currentDate.getMilliseconds() - birthDate.getMilliseconds(); // Get the milliseconds.
-    return y + " years, " + m + " months, " + d + " days, " + h + " hours, " + min + " minutes, " + s + " seconds and " + ms + " milliseconds old.";
+    return y + " years, " + m + " months, " + d + " days, " + h + " hours, " + min + " minutes, " + s + " seconds and " + ms + " milliseconds old";
 }
