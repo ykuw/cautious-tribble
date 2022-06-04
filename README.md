@@ -2,22 +2,13 @@
 A simple fullstack project using [Node.js](https://github.com/nodejs/node), [Express.js](https://github.com/expressjs/express), [React.js](https://github.com/facebook/react) and [MongoDB](https://github.com/mongodb/mongo).
 
 ## How to use it?
-Create a file named `.env` in the root directory with the following variables:
-- [JWT_KEY](https://jwt.io/introduction)
-- [MONGODB_URI](https://www.mongodb.com/docs/manual/reference/connection-string/)
+Create a file named `.env` in the root directory with the following variables: [JWT_KEY](https://jwt.io/introduction), [MONGODB_URI](https://www.mongodb.com/docs/manual/reference/connection-string/).
 
-In the MongoDB database create three collections named:
-- users
-- posts
-- quotes
+In the MongoDB database create three collections named: `users`, `posts`, `quotes`.
 
-Model information in the `server/collections` directory.
+Collection schema information? In the `server/collections` directory.
 
 ## How to run it?
-In the root directory of the project run:
+In the root directory of the project run `npm start`.
 
-`npm start`
-
-Then cd into the `interface` directory and run:
-
-`npm start`
+Then `cd` into the `interface` directory and run `npm start`.
