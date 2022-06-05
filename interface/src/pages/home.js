@@ -65,7 +65,7 @@ export default class Home extends React.Component {
 
                     <br/>
 
-                    <h3>Today</h3>
+                    <h3>Clock</h3>
                     <div className="tab-space">
                         <p>{new Intl.DateTimeFormat('en-GB', options).format(Date.now())}</p>
                     </div>
