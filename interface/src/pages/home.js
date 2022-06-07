@@ -46,7 +46,7 @@ export default class Home extends React.Component {
                         <title>Home</title> {/* Title for the page. */}
                     </Helmet>
 
-                    <h3>Quote</h3>
+                    <h2>Quote</h2>
                     <div className="tab-space"> {/* Container for the tabs. */}
                         {!isLoading ? ( // If not loading, render.
                             quotes.map((fields) => { // Map through quotes.
@@ -65,14 +65,14 @@ export default class Home extends React.Component {
 
                     <br/>
 
-                    <h3>Day</h3>
+                    <h2>Day</h2>
                     <div className="tab-space">
                         <p>{new Intl.DateTimeFormat('en-GB', options).format(Date.now())}</p>
                     </div>
 
                     <br/>
 
-                    <h3>Age</h3>
+                    <h2>Age</h2>
                     <div className="tab-space">
                         <p>{displayAge()}</p> {/* Display age. */}
                     </div>
